@@ -1,0 +1,6 @@
+[package]
+name = "interpretd"
+version = "0.1.0"
+authors = ["al"]
+
+[dependencies]
