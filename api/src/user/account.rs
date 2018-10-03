@@ -1,10 +1,11 @@
-use super::*;
-
-pub fn add(u:User) -> User {
+pub fn add(u:User) -> Result<User> {
 }
 
-pub fn delete(u:User) -> User {
+pub fn delete(u:User) -> Result<User> {
 }
 
-pub fn find(id:Uid) -> Option<User> {
+pub fn find(id:Uid) -> Result<User> {
+}
+
+pub fn update(u:User) -> Result<User> {
 }
