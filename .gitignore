@@ -2,3 +2,5 @@ GTAGS
 GPATH
 GRTAGS
 gtags.*
+
+bin/*
