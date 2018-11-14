@@ -1,19 +1,18 @@
-type Id = u64;
+pub type Id = u64;
 
-type UserId = Id;
+pub type UserId = Id;
 
-struct User {
+pub struct User {
     id: UserId,
     name: String,
     email: String,
     password: String,
-    phone: String,
-    
+    phone: String
 }
 
-type RoleId = Id;
+pub type RoleId = Id;
 
-struct Role {
+pub struct Role {
     id: RoleId,
-    name: String,
+    name: String
 }
