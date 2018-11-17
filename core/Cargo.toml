@@ -5,3 +5,4 @@ authors = ["Alex Sarapulov <1molyee@gmail.com>"]
 publish = false
 
 [dependencies]
+chrono = { version = "0.4", features = ["serde"] }
