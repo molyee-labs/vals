@@ -1,0 +1,10 @@
+[server]
+host = "localhost"
+port = 10001
+threads = 4
+
+[db]
+user = "al"
+pass = "al"
+host = "localhost"
+port = 10002
