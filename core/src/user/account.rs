@@ -1,5 +1,4 @@
 use ::result::*;
-use std::collections::HashSet;
 
 pub type Id = u64;
 
@@ -10,11 +9,11 @@ pub struct Account {
     password: String,
 }
 
-pub fn add(u:&Account) -> Result<Account> {
+pub fn add(u:&Account) -> Result<&Account> {
     Ok(u)
 }
 
-pub fn delete(u:&Account) -> Result<Account> {
+pub fn delete(u:&Account) -> Result<&Account> {
     Ok(u)
 }
 

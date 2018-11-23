@@ -5,6 +5,4 @@ pub struct Language {
     native: String,
     english: String,
     display: String,
-    ISO: String,
-    WIN: String,
 }

@@ -1,3 +1,5 @@
+use ::user::account::Account;
+
 pub struct Context {
-    user: &Account
+    user: Box<Account>
 }

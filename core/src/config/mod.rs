@@ -1,7 +1,6 @@
-use ::result::*;
+use std::fs::File;
+use std::io::Read;
 use toml;
-use std::env;
-use std::io;
 
 #[derive(Deserialize, Debug)]
 struct ServerConfig {
@@ -45,18 +44,9 @@ impl Config {
     }
 }
 
-fn config_path() -> Result<String> {
-    let args = env::args().collect();
-    let config_prefix = "--config=";
-    let len = config_prefix.len();
-    let arg = args.into_iter().find(|&i| i[0..len] == config_prefix)?;
-    arg[len..]
-}
-
-pub fn load() -> Config {
-    let file_path = config_path();
-    let mut handle = File::open(&file_path)?;
+pub fn load(path:&str) -> Config {
     let mut content = String::new();
-    handle.read_to_string(content)?;
-    toml::from_str(&content)?
+    let mut file = File::open(path).unwrap();
+    file.read_to_string(&mut content).unwrap();
+    toml::from_str(&content).unwrap()
 }

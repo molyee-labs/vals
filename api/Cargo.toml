@@ -2,6 +2,8 @@
 name = "api"
 version = "0.1.0"
 authors = ["Alex Sarapulov <1molyee@gmail.com>"]
+publish = false
+readme = "README.md"
 
 [dependencies]
 core = { path = "../core" }

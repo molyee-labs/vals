@@ -1,4 +1,5 @@
-use super as user;
+use ::user::account as user;
+use ::result::*;
 use std::time;
 
 pub struct Profile {
@@ -9,9 +10,9 @@ pub struct Profile {
 }
 
 pub fn update(p:Profile) -> Result<()> {
-
+    Ok(())
 }
 
 pub fn get(uid:user::Id) -> Result<Profile> {
-
+    Err(Error::NotFound)
 }

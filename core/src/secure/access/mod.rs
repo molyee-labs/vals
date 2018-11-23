@@ -1,4 +1,5 @@
 use ::result::*;
+use ::context::Context;
 
 pub fn is_allowed(c:Context) -> Result<bool> {
     Ok(true)

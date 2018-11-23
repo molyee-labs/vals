@@ -1,6 +1,6 @@
 use std::time::*;
 
-static ticker:Instant = Instant::now();
+lazy_static! { static ref TIMER:Instant = Instant::now(); }
 
 #[inline]
 pub fn now() -> SystemTime {
@@ -14,5 +14,5 @@ pub fn timestamp() -> Result<Duration, SystemTimeError> {
 
 #[inline]
 pub fn elapsed() -> Duration {
-    ticker.elapsed()
+    TIMER.elapsed()
 }
