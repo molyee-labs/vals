@@ -1,0 +1,8 @@
+CREATE USER molyee22 IN ROLE vals_admin ENCRYPTED PASSWORD 'restart23@'
+    CREATEDB CREATEROLE;
+CREATE USER vals_api_server IN ROLE vals_app ENCRYPTED PASSWORD 'dXfeIKHwWBT6j1MkAyESkUTc';
+ALTER DATABASE vals OWNER TO molyee22;
+ALTER DATABASE vals_log OWNER TO molyee22;
+ALTER TABLESPACE vals_db_space OWNER TO molyee22;
+ALTER TABLESPACE vals_index_space OWNER TO molyee22;
+ALTER TABLESPACE vals_log_space OWNER TO molyee22;
