@@ -7,3 +7,7 @@ readme = "README.md"
 
 [dependencies]
 core = { path = "../core" }
+postgres = "*"
+toml = "*"
+serde = "*"
+serde_derive = "*"

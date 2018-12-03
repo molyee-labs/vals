@@ -1,5 +1,5 @@
-use ::user::account::Account;
+use net::session::Client;
 
-pub struct Context {
-    user: Box<Account>
+pub trait Context {
+    fn client(&self) -> impl Client;
 }

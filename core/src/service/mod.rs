@@ -1,3 +1,2 @@
-mod common;
-mod users;
-mod auth;
+pub mod users;
+pub mod auth;
