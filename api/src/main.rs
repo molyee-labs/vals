@@ -7,7 +7,11 @@ extern crate serde;
 #[macro_use]
 extern crate serde_derive;
 
-use core::config::{self, Config};
+mod config;
+mod db;
+mod service;
+
+use config::Config;
 use std::env;
 
 fn main() {
