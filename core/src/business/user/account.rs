@@ -1,4 +1,4 @@
-use ::result::*;
+use result::*;
 
 pub type Id = u64;
 
