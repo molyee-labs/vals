@@ -1,5 +1,3 @@
-use ::user::account::{self, Account};
-use ::result::*;
 use core::db::Db;
 use postgres::{Connection, TlsMode};
 
