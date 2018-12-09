@@ -18,9 +18,7 @@ struct DbConfig {
 }
 
 #[derive(Deserialize, Debug)]
-struct OptionsConfig {
-
-}
+struct OptionsConfig {}
 
 #[derive(Deserialize, Debug)]
 pub struct Config {
@@ -40,11 +38,14 @@ impl Config {
 
     pub fn dsn(&self) -> String {
         let db = &self.db;
-        format!("{}:{}@{}:{}/?prefer_socket=false", db.user, db.pass, db.host, db.port)
+        format!(
+            "{}:{}@{}:{}/?prefer_socket=false",
+            db.user, db.pass, db.host, db.port
+        )
     }
 }
 
-pub fn load(path:&str) -> Config {
+pub fn load(path: &str) -> Config {
     let mut content = String::new();
     let mut file = File::open(path).unwrap();
     file.read_to_string(&mut content).unwrap();

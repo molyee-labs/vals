@@ -9,10 +9,10 @@ pub struct Profile {
     dob: time::SystemTime,
 }
 
-pub fn update(p:Profile) -> Result<()> {
+pub fn update(p: Profile) -> Result<()> {
     Ok(())
 }
 
-pub fn get(uid:user::Id) -> Result<Profile> {
+pub fn get(uid: user::Id) -> Result<Profile> {
     Err(Error::NotFound)
 }

@@ -1,9 +1,9 @@
 #![allow(dead_code)]
 
 extern crate core;
-extern crate toml;
 extern crate postgres;
 extern crate serde;
+extern crate toml;
 #[macro_use]
 extern crate serde_derive;
 
@@ -24,7 +24,7 @@ fn config_path() -> String {
     let len = config_prefix.len();
     match env::args().find(|ref i| &i[0..len] == config_prefix) {
         Some(arg) => arg[len..].to_string(),
-        _ => "config.default.toml".to_string()
+        _ => "config.default.toml".to_string(),
     }
 }
 

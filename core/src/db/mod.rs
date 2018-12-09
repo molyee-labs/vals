@@ -47,8 +47,7 @@ impl From<&str> for DbType {
 }
 
 pub trait Db {
-    fn func<T>(&self, func:&str, args:&[DbType]) -> Result<T>;
-    fn proc<T>(&self, proc:&str, args:&[DbType]) -> Result<T>;
-    fn view<T>(&self, view:&str) -> Result<T>;
+    fn func<T>(&self, func: &str, args: &[DbType]) -> Result<T>;
+    fn proc<T>(&self, proc: &str, args: &[DbType]) -> Result<T>;
+    fn view<T>(&self, view: &str) -> Result<T>;
 }
-

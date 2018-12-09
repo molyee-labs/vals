@@ -1,6 +1,6 @@
-use secure::access::Authority;
-use net::session::Session;
 use net::connection::Connection;
+use net::session::Session;
+use secure::access::Authority;
 
 pub trait Client {
     fn session(&self) -> Session;

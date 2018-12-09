@@ -9,22 +9,22 @@ pub struct Account {
     password: String,
 }
 
-pub fn add(u:&Account) -> Result<&Account> {
+pub fn add(u: &Account) -> Result<&Account> {
     Ok(u)
 }
 
-pub fn delete(u:&Account) -> Result<&Account> {
+pub fn delete(u: &Account) -> Result<&Account> {
     Ok(u)
 }
 
-pub fn find(uid:Id) -> Result<Account> {
+pub fn find(uid: Id) -> Result<Account> {
     Err(Error::NotFound)
 }
 
-pub fn find_by_email(email:&str) -> Result<Account> {
+pub fn find_by_email(email: &str) -> Result<Account> {
     Err(Error::NotFound)
 }
 
-pub fn find_by_phone(phone:&str) -> Result<Account> {
+pub fn find_by_phone(phone: &str) -> Result<Account> {
     Err(Error::NotFound)
 }

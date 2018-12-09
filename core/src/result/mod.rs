@@ -9,7 +9,9 @@ pub enum Error {
 }
 
 impl From<std::io::Error> for Error {
-    fn from(error:std::io::Error) -> Self { Error::IoError(error) }
+    fn from(error: std::io::Error) -> Self {
+        Error::IoError(error)
+    }
 }
 
-pub type Result<T> = std::result::Result<T,Error>;
+pub type Result<T> = std::result::Result<T, Error>;

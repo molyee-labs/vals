@@ -1,6 +1,8 @@
 use std::time::*;
 
-lazy_static! { static ref TIMER:Instant = Instant::now(); }
+lazy_static! {
+    static ref TIMER: Instant = Instant::now();
+}
 
 #[inline]
 pub fn now() -> SystemTime {

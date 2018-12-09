@@ -1,4 +1,4 @@
-pub mod session;
-pub mod message;
-pub mod connection;
 pub mod client;
+pub mod connection;
+pub mod message;
+pub mod session;

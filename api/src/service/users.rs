@@ -11,11 +11,9 @@ struct Service {
 }
 
 impl Service {
-    pub fn add_user(&self, c:&Context, nu:&user::NewUser) -> Result<()> {
-        let u:Account = &self.db.create_user(&nu)?;
+    pub fn add_user(&self, c: &Context, nu: &user::NewUser) -> Result<()> {
+        let u: Account = &self.db.create_user(&nu)?;
     }
 
-    pub fn find_user(&self, c:&Context) -> Result<Account> {
-
-    }
+    pub fn find_user(&self, c: &Context) -> Result<Account> {}
 }

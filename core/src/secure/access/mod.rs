@@ -1,3 +1,1 @@
-pub struct Authority {
-
-}
+pub struct Authority {}
