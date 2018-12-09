@@ -1,5 +1,5 @@
-use ::user::account as user;
-use ::result::*;
+use super::account as user;
+use result::*;
 
 pub type Id = u32;
 

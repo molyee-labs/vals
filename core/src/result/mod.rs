@@ -1,6 +1,7 @@
 use std::convert::From;
 
 pub enum Error {
+    NotImplemented,
     Unknown,
     NotFound,
     Undefined,

@@ -1,4 +1,3 @@
-use user::account::Account;
 use result::Result;
 use std::convert::From;
 
@@ -48,8 +47,8 @@ impl From<&str> for DbType {
 }
 
 pub trait Db {
-    fn exec<T>(&self, func:&str, args:&[DbType]) -> Result<T>;
-    fn call(&self, proc:&str, args:&[DbType]) -> Result<()>;
+    fn func<T>(&self, func:&str, args:&[DbType]) -> Result<T>;
+    fn proc<T>(&self, proc:&str, args:&[DbType]) -> Result<T>;
     fn view<T>(&self, view:&str) -> Result<T>;
 }
 

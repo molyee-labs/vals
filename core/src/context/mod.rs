@@ -1,5 +1,5 @@
-use net::session::Client;
+use net::client::Client;
 
 pub trait Context {
-    fn client(&self) -> impl Client;
+    fn client<T:Client>(&self) -> T;
 }
