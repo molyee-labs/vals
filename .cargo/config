@@ -1,3 +1,4 @@
+edition = "2018"
 paths = ["./core"]
 
 [build]
