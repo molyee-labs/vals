@@ -8,3 +8,4 @@ publish = false
 lazy_static = "*"
 url = "*"
 rand = "*"
+scrypt = { version = "*", default-features = false }

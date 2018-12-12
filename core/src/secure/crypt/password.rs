@@ -1,19 +1,16 @@
 use crate::data::user::Password;
 use crate::result::*;
 use crate::random;
+use scrypt::{scrypt, ScryptParams};
 
-pub struct Password {
-    hash: [u8; 128],
-    salt: [u8; 128],
+lazy_static! {
+    static SCRYPT_PARAMS = ScryptParams::new(15, 8, 1).unwrap();
 }
 
-impl Password {
-    fn new(source: Vec<u8>) -> Self {
-        let salt = random::next_bytes(128);
-
-    }
-
-    fn validate<T: AsBytesArray>(&self, phrase: T) -> Result<()> {
-
-    }
+pub fn generate(password: &[u8], f: HashFunc, hash_len: u32, salt_len: u32) -> ([u8; hash_len], [u8; salt_len]) {
+    let salt: [u8; salt_len] = random::next_bytes(salt_len);
+    let mut output: [u8; 128] = [];
+    let params = SCRYPT_PARAMS;
+    scrypt(password, &salt, &params, &output);
+    (output, salt)
 }

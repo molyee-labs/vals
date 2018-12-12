@@ -4,6 +4,7 @@
 extern crate lazy_static;
 extern crate url;
 extern crate rand;
+extern crate scrypt;
 
 pub mod business;
 pub mod context;
