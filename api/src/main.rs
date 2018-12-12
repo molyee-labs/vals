@@ -4,7 +4,6 @@ extern crate core;
 extern crate postgres;
 extern crate serde;
 extern crate toml;
-#[macro_use]
 extern crate serde_derive;
 
 mod config;

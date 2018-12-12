@@ -1,6 +1,6 @@
-use net::connection::Connection;
-use net::session::Session;
-use secure::access::Authority;
+use crate::net::connection::Connection;
+use crate::net::session::Session;
+use crate::secure::access::Authority;
 
 pub trait Client {
     fn session(&self) -> Session;

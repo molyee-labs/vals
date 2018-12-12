@@ -1,13 +1,6 @@
-use super::account as user;
-use result::*;
-
-pub type Id = u32;
-
-pub struct Group {
-    id: Id,
-    name: String,
-    owner: user::Id,
-}
+use crate::data::user;
+use crate::data::group::{Id, Group};
+use crate::result::*;
 
 pub fn create(name: String, owner: user::Id) -> Result<Group> {
     let id = 0;

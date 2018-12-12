@@ -1,9 +1,9 @@
-use ::result::Result;
-use std::convert::From;
+use crate::result::Result;
 
-
-pub trait Db {
-    fn func<T>(&self, func: &str, args: &[DbType]) -> Result<T>;
-    fn proc<T>(&self, proc: &str, args: &[DbType]) -> Result<T>;
-    fn view<T>(&self, view: &str) -> Result<T>;
+pub trait Storage {
+    fn get<I, T>(id: I) -> Result<T>;
+    fn retrieve<I, T>(id: I) -> Result<T>;
+    fn put<I, T>(val: T) -> Result<I>;
+    fn set<I, T>(id: I, val: T) -> Result<()>;
+    fn drop<I, T>(id: I) -> Result<T>;
 }

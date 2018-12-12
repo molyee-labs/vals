@@ -1,4 +1,4 @@
-use net::client::Client;
+use crate::net::client::Client;
 
 pub trait Context {
     fn client<T: Client>(&self) -> T;
