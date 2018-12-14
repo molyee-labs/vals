@@ -1,12 +1,7 @@
 use crate::result::*;
 use crate::data::user::*;
-use crate::secure::crypt::hasher;
-use crate::db;
 
 pub fn add(nu: NewUser) -> Result<Account> {
-    let mut u: Account = Account::from(nu);
-    let s = db::open()?;
-    s.
     Err(Error::NotImplemented)
 }
 

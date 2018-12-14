@@ -1,27 +1,24 @@
 use crate::result::*;
-use std::sync::Mutex;
 
 pub trait Type {}
 
 trait WithArgs {
-    fn put<T: Into<Type>>(&self, arg: T) -> Self;
-    fn pop(&self) -> impl Into<Type>;
+    fn put<T: Into<Type> + ?Sized>(&self, arg: &T) -> Self;
+    fn pop<T: Into<Type> + ?Sized>(&self) -> T;
 }
 
-#[derive(WithArgs)]
-pub trait Query {
+pub trait Query : WithArgs {
     fn str(&self) -> &str;
     fn prepare(&self) -> Self;
 }
 
-#[derive(WithArgs)]
-pub trait Function {
+pub trait Function : WithArgs {
     fn name(&self) -> &str;
 }
 
 pub trait Database {
     fn get<T: From<Type>>(&self, q: &Query) -> Result<T>;
-    fn call<T: From<Type>>(&self, q: &Func) -> Result<T>;
+    fn call<T: From<Type>>(&self, q: &Function) -> Result<T>;
 }
 
 macro_rules! func {

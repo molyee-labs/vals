@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
+#![allow(unused_macros)]
 
 extern crate lazy_static;
 extern crate url;

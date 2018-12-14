@@ -1,4 +1,5 @@
 use std::time::*;
+use lazy_static::lazy_static;
 
 lazy_static! {
     static ref TIMER: Instant = Instant::now();
