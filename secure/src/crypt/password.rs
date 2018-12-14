@@ -24,13 +24,6 @@ impl From<scrypt::errors::InvalidOutputLen> for Error {
     }
 }
 
-impl PartialEq<&[u8]> for [u8; 128] {
-    fn eq(&self, other: &[u8]) -> bool {
-        &self.len() == other.len() &&
-            &self.iter().zip(other).all(|(a, b)| { a == b })
-    }
-}
-
 impl Hasher {
     pub fn new() -> Result<Self> {
         let params = ScryptParams::new(15, 8, 1)?;
@@ -48,10 +41,14 @@ impl Hasher {
     pub fn check(&self, password: &[u8], origin: Password) -> Result<()> {
         let mut hash = [0u8; 128];
         scrypt(password, &origin.salt, &self.params, &mut hash)?;
-        if origin.hash.iter().zip(hash).all() {
+        if origin.hash[..] == hash[..] {
             Ok(())
         } else {
             Err(Error::IncorrectPassword)
         }
     }
+}
+
+fn encode(password: &[u8]) -> Result<Password> {
+    Hasher::new()?.get(password)
 }
