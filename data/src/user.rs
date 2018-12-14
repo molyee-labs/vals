@@ -1,4 +1,4 @@
-use secure::crypt::password::{Hasher, Password};
+use secure::crypt::password::Password;
 
 pub struct Email {
     raw: String,
@@ -9,8 +9,8 @@ pub struct Phone {
 }
 
 pub enum NewUser {
-    WithEmail { email: Email, password: Vec<u8> },
-    WithPhone { phone: Phone, password: Vec<u8> },
+    WithEmail { email: Email, password: Password },
+    WithPhone { phone: Phone, password: Password },
     // FromInvite,
     // ..
 }
@@ -37,11 +37,9 @@ impl From<NewUser> for Account {
     fn from(nu: NewUser) -> Self {
         match nu {
             WithEmail { email, password } => {
-                let password = Hasher::new()?.get(password.as_slice)?;
                 Account {id: 0, email: Some(email), phone: None, password}
             }
             WithPhone { phone, password } => {
-                let password = Hasher::new()?.get(password.as_slice)?;
                 Account {id: 0, email: None, phone: Some(phone), password}
             }
         }

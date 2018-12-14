@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 extern crate secure;
 extern crate url;
 extern crate diesel;
