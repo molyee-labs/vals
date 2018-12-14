@@ -1,7 +1,6 @@
 #![allow(dead_code)]
 
 extern crate core;
-extern crate postgres;
 extern crate serde;
 extern crate toml;
 extern crate serde_derive;

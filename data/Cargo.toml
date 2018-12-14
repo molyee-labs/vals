@@ -1,12 +1,11 @@
 [package]
-name = "core"
+name = "data"
 version = "0.1.0"
 authors = ["Alex Sarapulov <1molyee@gmail.com>"]
 publish = false
 edition = "2018"
 
 [dependencies]
-data = { path = "../data" }
-secure = { path = "../secure" }
-lazy_static = "*"
+diesel = "1.3.3"
 url = "*"
+secure = { path = "../secure" }

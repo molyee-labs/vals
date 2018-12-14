@@ -1,12 +1,11 @@
 [package]
-name = "core"
+name = "secure"
 version = "0.1.0"
 authors = ["Alex Sarapulov <1molyee@gmail.com>"]
 publish = false
 edition = "2018"
 
 [dependencies]
-data = { path = "../data" }
-secure = { path = "../secure" }
-lazy_static = "*"
-url = "*"
+rand = "*"
+rand_core = "*"
+scrypt = { version = "*", default_features = false }
