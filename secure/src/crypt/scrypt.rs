@@ -23,7 +23,7 @@ impl From<scrypt::errors::InvalidOutputLen> for Error {
 impl ScryptHasher {
     pub fn new() -> Result<Self> {
         let params = ScryptParams::new(15, 8, 1)?;
-        Ok(Hasher { params })
+        Ok(ScryptHasher { params })
     }
 }
 
@@ -48,5 +48,5 @@ impl Hasher for ScryptHasher {
 }
 
 fn encode(password: &[u8]) -> Result<Password> {
-    Hasher::new()?.get(password)
+    ScryptHasher::new()?.get(password)
 }
