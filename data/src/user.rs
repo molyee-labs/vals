@@ -1,4 +1,4 @@
-use secure::crypt::password::Password;
+use secure::crypt::password;
 
 pub struct Email {
     raw: String,
@@ -6,6 +6,11 @@ pub struct Email {
 
 pub struct Phone {
     raw: String,
+}
+
+pub struct Password {
+    hash: [u8; 128],
+    salt: [u8; 16],
 }
 
 pub enum NewUser {
