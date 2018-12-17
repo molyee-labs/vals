@@ -1,8 +1,8 @@
 #![allow(dead_code)]
 
+extern crate diesel;
 extern crate secure;
 extern crate url;
-extern crate diesel;
 
-pub mod user;
 pub mod group;
+pub mod user;

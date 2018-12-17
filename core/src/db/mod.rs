@@ -7,12 +7,12 @@ trait WithArgs {
     fn pop<T: Into<Type> + ?Sized>(&self) -> T;
 }
 
-pub trait Query : WithArgs {
+pub trait Query: WithArgs {
     fn str(&self) -> &str;
     fn prepare(&self) -> Self;
 }
 
-pub trait Function : WithArgs {
+pub trait Function: WithArgs {
     fn name(&self) -> &str;
 }
 

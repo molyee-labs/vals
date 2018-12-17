@@ -36,12 +36,18 @@ use self::NewUser::*;
 impl From<NewUser> for Account {
     fn from(nu: NewUser) -> Self {
         match nu {
-            WithEmail { email, password } => {
-                Account {id: 0, email: Some(email), phone: None, password}
-            }
-            WithPhone { phone, password } => {
-                Account {id: 0, email: None, phone: Some(phone), password}
-            }
+            WithEmail { email, password } => Account {
+                id: 0,
+                email: Some(email),
+                phone: None,
+                password,
+            },
+            WithPhone { phone, password } => Account {
+                id: 0,
+                email: None,
+                phone: Some(phone),
+                password,
+            },
         }
     }
 }

@@ -1,9 +1,9 @@
+use super::password::*;
 use crate::random;
 use scrypt::{scrypt, ScryptParams};
-use super::password::*;
 
 pub struct ScryptHasher {
-    params: ScryptParams
+    params: ScryptParams,
 }
 
 use crate::result::*;
