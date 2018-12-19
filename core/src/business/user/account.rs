@@ -1,4 +1,4 @@
-use crate::data::user::*;
+use data::user::*;
 use crate::result::*;
 
 pub fn add(nu: NewUser) -> Result<Account> {

@@ -14,8 +14,8 @@ pub struct Password {
 }
 
 pub enum NewUser {
-    WithEmail { email: Email, password: Password },
-    WithPhone { phone: Phone, password: Password },
+    WithEmail { email: Email, password: Vec<u8> },
+    WithPhone { phone: Phone, password: Vec<u8> },
     // FromInvite,
     // ..
 }

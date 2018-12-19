@@ -7,7 +7,6 @@ pub trait Hasher {
     fn check(&self, password: &[u8], hash: &[u8], salt: &[u8]) -> Result<()>;
 }
 
-#[derive(Hasher)]
 pub struct ScryptHasher {
     params: ScryptParams,
 }
@@ -39,8 +38,8 @@ impl Hasher for ScryptHasher {
     }
 
     fn check(&self, password: &[u8], hash: &[u8], salt: &[u8]) -> Result<()> {
-        let mut output = &[u8; hash.len()];
-        scrypt(password, salt, &self.params, output)?;
+        let mut output = Vec::with_capacity(hash.len());
+        scrypt(password, salt, &self.params, &mut output)?;
         if output == hash {
             Ok(())
         } else {
