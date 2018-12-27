@@ -6,3 +6,4 @@ gtags.*
 .idea/*
 
 bin/*
+target/*
