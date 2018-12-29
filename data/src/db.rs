@@ -1,12 +1,21 @@
 use diesel::prelude::*;
 use diesel::pg::*;
 use std::sync::Arc;
-use common::sync::pool::*;
+use common::pool::*;
+use common::builder::*;
 
-pub trait Conn : diesel::Connection + Sized {}
+pub struct Conn(PgConnection);
 
-const POOL: Arc<Pool<Conn>> = Arc::new(Pool::new());
+pub struct Db {
+    pool: Pool<Conn>,
+}
 
-pub fn get() -> Holder<Conn> {
-    POOL
+impl Db {
+
+    fn new(dsn: &str) -> Self {
+        let dsn = dsn.to_string();
+        let f = move || Conn(PgConnection::establish(&dsn).unwrap());
+        let pool = Pool::with_closure(f);
+        Db { pool }
+    }
 }

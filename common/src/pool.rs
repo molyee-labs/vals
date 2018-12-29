@@ -10,6 +10,7 @@ pub enum Error {
 
 pub type Result<T> = std::result::Result<T, Error>;
 
+#[derive(Default)]
 struct Inner<T>(Arc<Mutex<RefCell<Vec<T>>>>);
 
 pub struct Pool<T> {

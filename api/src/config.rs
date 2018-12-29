@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::Read;
-use toml;
+use toml::*;
+use serde_derive::*;
 
 #[derive(Deserialize, Debug)]
 struct ServerConfig {

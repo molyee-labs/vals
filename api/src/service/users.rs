@@ -1,9 +1,8 @@
 use core::context::Context;
-use core::db::Db;
-use core::user::account::Account;
-use data::user;
-use env::Env;
-use result::*;
+use data::user::*;
+use data::db::Db;
+use core::env::Env;
+use core::result::*;
 
 struct Service {
     db: Db,
@@ -11,7 +10,7 @@ struct Service {
 }
 
 impl Service {
-    pub fn add_user(&self, c: &Context, nu: &user::NewUser) -> Result<()> {
+    pub fn add_user(&self, c: &Context, nu: &NewUser) -> Result<()> {
         let u: Account = &self.db.create_user(&nu)?;
     }
 

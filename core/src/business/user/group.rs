@@ -4,7 +4,7 @@ use crate::result::*;
 
 pub fn create(name: String, owner: user::Id) -> Result<Group> {
     let id = 0;
-    Ok(Group { id, name, owner })
+    Ok(Group::new(id, name, owner))
 }
 
 pub fn set_owner(gid: Id, owner: user::Id) -> Result<()> {

@@ -7,6 +7,7 @@ readme = "README.md"
 
 [dependencies]
 core = { path = "../core" }
+data = { path = "../data" }
 toml = "*"
 serde = "*"
 serde_derive = "*"

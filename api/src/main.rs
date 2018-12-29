@@ -1,12 +1,12 @@
 #![allow(dead_code)]
 
 extern crate core;
+extern crate data;
 extern crate serde;
 extern crate toml;
 extern crate serde_derive;
 
 mod config;
-mod db;
 mod service;
 
 use config::Config;

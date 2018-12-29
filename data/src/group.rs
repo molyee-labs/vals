@@ -7,3 +7,9 @@ pub struct Group {
     name: String,
     owner: user::Id,
 }
+
+impl Group {
+    pub fn new(id: Id, name: String, owner: user::Id) -> Self {
+        Group { id, name, owner }
+    }
+}
