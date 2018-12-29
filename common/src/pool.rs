@@ -59,24 +59,35 @@ impl<T> Clone for Pool<T> {
 impl<T> From<DefaultBuilder<T>> for Pool<T>
 where T : Default + 'static {
     fn from(from: DefaultBuilder<T>) -> Self {
-        Pool { inner: Inner::new(), builder: SyncBuilder::from(from) }
+        Pool::new(SyncBuilder::from(from))
     }
 }
 
 impl<T> From<FnBuilder<T>> for Pool<T> 
 where T : 'static {
     fn from(from: FnBuilder<T>) -> Self {
-        Pool { inner: Inner::new(), builder: SyncBuilder::from(from) }
+        Pool::new(SyncBuilder::from(from))
     }
 }
 
+impl<T> Pool<T>
+where T : 'static {
+    pub fn with_closure<F>(f: F) -> Self
+    where F : Fn() -> T + Sized + 'static {
+        Pool::from(FnBuilder::from(f))
+    }
+}
 impl<T> Pool<T> {
-    fn take(&self) -> Holder<T> {
+    pub fn new(builder: SyncBuilder<T>) -> Self {
+        Pool { inner: Inner::new(), builder }
+    }
+
+    pub fn take(&self) -> Holder<T> {
         let entry = self.inner.take().unwrap_or_else(|| self.builder.build());
         Holder { pool: Pool::clone(&self), entry: ManuallyDrop::new(entry) }
     }
 
-    fn release(&self, entry: T) {
+    pub fn release(&self, entry: T) {
         self.inner.release(entry)
     }
 }
