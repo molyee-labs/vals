@@ -1,5 +1,5 @@
-use std::sync::{ Arc, Mutex };
 use std::marker::PhantomData;
+use std::sync::{Arc, Mutex};
 
 pub trait Build {
     type Out;
@@ -13,13 +13,15 @@ pub struct DefaultBuilder<T>(PhantomData<T>);
 pub struct FnBuilder<T>(Box<Fn() -> T>);
 
 impl<F, T> From<F> for FnBuilder<T>
-where F : Fn() -> T + Sized + 'static {
+where
+    F: Fn() -> T + Sized + 'static,
+{
     fn from(from: F) -> Self {
         FnBuilder(Box::new(from))
     }
 }
 
-pub struct SyncBuilder<T>(Arc<Mutex<dyn Build<Out=T>>>);
+pub struct SyncBuilder<T>(Arc<Mutex<dyn Build<Out = T>>>);
 
 unsafe impl<T> Send for SyncBuilder<T> {}
 unsafe impl<T> Sync for SyncBuilder<T> {}
@@ -31,23 +33,29 @@ impl<T> Clone for SyncBuilder<T> {
 }
 
 impl<T> From<DefaultBuilder<T>> for SyncBuilder<T>
-where T: Default + 'static {
+where
+    T: Default + 'static,
+{
     fn from(from: DefaultBuilder<T>) -> Self {
         SyncBuilder(Arc::new(Mutex::new(from)))
     }
 }
 
 impl<T> From<FnBuilder<T>> for SyncBuilder<T>
-where T : 'static {
+where
+    T: 'static,
+{
     fn from(from: FnBuilder<T>) -> Self {
         SyncBuilder(Arc::new(Mutex::new(from)))
     }
 }
 
 impl<T> Build for DefaultBuilder<T>
-where T : Default {
+where
+    T: Default,
+{
     type Out = T;
-    
+
     fn build(&self) -> T {
         T::default()
     }

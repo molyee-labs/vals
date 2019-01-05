@@ -1,6 +1,6 @@
-use crate::result::*;
 use crate::random;
-use scrypt::{scrypt, ScryptParams, errors::*};
+use crate::result::*;
+use scrypt::{errors::*, scrypt, ScryptParams};
 
 pub trait Hasher {
     fn encode(&self, password: &[u8], hash: &mut [u8], salt: &mut [u8]) -> Result<()>;

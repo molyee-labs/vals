@@ -1,5 +1,5 @@
-use data::user::*;
 use crate::result::*;
+use data::user::*;
 
 pub fn add(nu: NewUser) -> Result<Account> {
     Err(Error::NotImplemented)

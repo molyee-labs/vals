@@ -1,8 +1,8 @@
 use core::context::Context;
-use data::user::*;
-use data::db::Db;
 use core::env::Env;
 use core::result::*;
+use data::db::Db;
+use data::user::*;
 
 struct Service {
     db: Db,

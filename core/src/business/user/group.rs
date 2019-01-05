@@ -1,6 +1,6 @@
+use crate::result::*;
 use data::group::{Group, Id};
 use data::user;
-use crate::result::*;
 
 pub fn create(name: String, owner: user::Id) -> Result<Group> {
     let id = 0;

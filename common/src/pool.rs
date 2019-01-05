@@ -1,8 +1,8 @@
-use std::sync::{Arc, Mutex};
+use crate::builder::*;
 use std::cell::RefCell;
 use std::mem::ManuallyDrop;
 use std::ptr;
-use crate::builder::*;
+use std::sync::{Arc, Mutex};
 
 pub enum Error {
     LimitExceeded,
@@ -53,39 +53,56 @@ unsafe impl<T> Send for Pool<T> {}
 
 impl<T> Clone for Pool<T> {
     fn clone(&self) -> Self {
-        Pool { inner: self.inner.clone(), builder: self.builder.clone() }
+        Pool {
+            inner: self.inner.clone(),
+            builder: self.builder.clone(),
+        }
     }
 }
 
 impl<T> From<DefaultBuilder<T>> for Pool<T>
-where T : Default + 'static {
+where
+    T: Default + 'static,
+{
     fn from(from: DefaultBuilder<T>) -> Self {
         Pool::new(SyncBuilder::from(from))
     }
 }
 
-impl<T> From<FnBuilder<T>> for Pool<T> 
-where T : 'static {
+impl<T> From<FnBuilder<T>> for Pool<T>
+where
+    T: 'static,
+{
     fn from(from: FnBuilder<T>) -> Self {
         Pool::new(SyncBuilder::from(from))
     }
 }
 
 impl<T> Pool<T>
-where T : 'static {
+where
+    T: 'static,
+{
     pub fn with_closure<F>(f: F) -> Self
-    where F : Fn() -> T + Sized + 'static {
+    where
+        F: Fn() -> T + Sized + 'static,
+    {
         Pool::from(FnBuilder::from(f))
     }
 }
 impl<T> Pool<T> {
     pub fn new(builder: SyncBuilder<T>) -> Self {
-        Pool { inner: Inner::new(), builder }
+        Pool {
+            inner: Inner::new(),
+            builder,
+        }
     }
 
     pub fn take(&self) -> Holder<T> {
         let entry = self.inner.take().unwrap_or_else(|| self.builder.build());
-        Holder { pool: Pool::clone(&self), entry: ManuallyDrop::new(entry) }
+        Holder {
+            pool: Pool::clone(&self),
+            entry: ManuallyDrop::new(entry),
+        }
     }
 
     pub fn release(&self, entry: T) {
