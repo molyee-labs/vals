@@ -1,5 +1,5 @@
-use crate::data::group::{Group, Id};
-use crate::data::user;
+use data::group::{Group, Id};
+use data::user;
 use crate::result::*;
 
 pub fn create(name: String, owner: user::Id) -> Result<Group> {

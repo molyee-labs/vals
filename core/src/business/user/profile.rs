@@ -1,4 +1,4 @@
-use crate::data::user::{Id, Profile};
+use data::user::{Id, Profile};
 use crate::result::*;
 
 pub fn update(p: Profile) -> Result<()> {

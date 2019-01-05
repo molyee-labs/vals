@@ -2,11 +2,6 @@
 #![allow(unused_variables)]
 #![allow(unused_macros)]
 
-extern crate data;
-extern crate lazy_static;
-extern crate secure;
-extern crate url;
-
 pub mod business;
 pub mod context;
 pub mod locale;

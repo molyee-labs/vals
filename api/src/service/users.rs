@@ -11,8 +11,10 @@ struct Service {
 
 impl Service {
     pub fn add_user(&self, c: &Context, nu: &NewUser) -> Result<()> {
-        let u: Account = &self.db.create_user(&nu)?;
+        unimplemented!()
     }
 
-    pub fn find_user(&self, c: &Context) -> Result<Account> {}
+    pub fn find_user(&self, c: &Context) -> Result<Account> {
+        unimplemented!()
+    }
 }
