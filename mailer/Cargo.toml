@@ -1,7 +1,0 @@
-[package]
-name = "mailer"
-version = "0.1.0"
-authors = ["Alex Sarapulov <1molyee@gmail.com>"]
-publish = false
-
-[dependencies]
