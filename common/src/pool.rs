@@ -1,8 +1,7 @@
 use crate::builder::*;
-use std::cell::RefCell;
 use std::mem::ManuallyDrop;
 use std::ptr;
-use std::sync::{Arc, Mutex};
+use crate::shared::LinkMut;
 
 pub enum Error {
     LimitExceeded,
@@ -10,8 +9,7 @@ pub enum Error {
 
 pub type Result<T> = std::result::Result<T, Error>;
 
-#[derive(Default)]
-struct Inner<T>(Arc<Mutex<RefCell<Vec<T>>>>);
+struct Inner<T>(LinkMut<Vec<T>>);
 
 pub struct Pool<T> {
     inner: Inner<T>,
@@ -23,42 +21,39 @@ pub struct Holder<T> {
     entry: ManuallyDrop<T>,
 }
 
-unsafe impl<T> Sync for Inner<T> {}
-unsafe impl<T> Send for Inner<T> {}
-
 impl<T> Clone for Inner<T> {
     fn clone(&self) -> Self {
-        Inner(Arc::clone(&self.0))
+        Inner(LinkMut::clone(&self.0))
     }
 }
 
 impl<T> Inner<T> {
     fn new() -> Self {
-        Inner(Arc::new(Mutex::new(RefCell::new(vec![]))))
+        Inner(Default::default())
     }
 
     fn take(&self) -> Option<T> {
-        let mut cell = self.0.lock().unwrap();
+        let mut cell = self.0.lock();
         cell.get_mut().pop()
     }
 
     fn release(&self, entry: T) {
-        let mut cell = self.0.lock().unwrap();
+        let mut cell = self.0.lock();
         cell.get_mut().push(entry)
+    }
+}
+
+impl<T> Clone for Pool<T> {
+    fn clone(&self) -> Self {
+        Pool {
+            inner: Inner::clone(&self.inner),
+            builder: SyncBuilder::clone(&self.builder),
+        }
     }
 }
 
 unsafe impl<T> Sync for Pool<T> {}
 unsafe impl<T> Send for Pool<T> {}
-
-impl<T> Clone for Pool<T> {
-    fn clone(&self) -> Self {
-        Pool {
-            inner: self.inner.clone(),
-            builder: self.builder.clone(),
-        }
-    }
-}
 
 impl<T> From<DefaultBuilder<T>> for Pool<T>
 where
@@ -89,6 +84,7 @@ where
         Pool::from(FnBuilder::from(f))
     }
 }
+
 impl<T> Pool<T> {
     pub fn new(builder: SyncBuilder<T>) -> Self {
         Pool {
