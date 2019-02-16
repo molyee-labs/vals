@@ -1,6 +1,0 @@
-edition = "2018"
-paths = ["./core"]
-
-[build]
-target-dir = "./bin"
-incremental = true
